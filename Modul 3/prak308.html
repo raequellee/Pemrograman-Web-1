@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title> Pembuatan Form </title>
+    </head>
+    <body>
+        <table style="border-width: 3.5; border-style: solid; border-color: grey black black grey;">
+            <tr bgcolor="skyblue" >
+                <td colspan="2" width="600" height="80" align="center">
+                    <font face="arial" color="red"><h1> Pendaftaran Kursus </h1></font>
+                </td>
+            </tr>
+
+            <tr bgcolor="grey">
+                <td colspan="2">
+                    <font face="arial"><h2> Data Diri </h2></font>
+                        Nama <input type="text" name="nama" style="margin-left: 121.5;"><br>
+                        Nim <input type="text" name="nim" style="margin-left: 131;"> <br>
+                        E-mail <input type="text" name="email" style="margin-left: 116"> <br>
+                        Tanggal Lahir <input type="text" name="ttl" placeholder="hh/bb/tttt" style="margin-left: 70; width: 150; font-family: 'courier new';"> <br>
+
+                        Jenis Kelamin
+                        <input type="radio" name="jenkel" value="L" style="margin-left: 70;"> Laki-laki <br>
+                        <input type="radio" name="jenkel" value="P" style="margin-left: 165;"> Perempuan <br>
+
+                        Pilih Program Khusus
+                        <input type="checkbox" name="kursus" value="C#" style="margin-left: 20;"> C# <br>
+                        <input type="checkbox" name="kursus" value="java" style="margin-left: 165;"> Java <br>
+                        <input type="checkbox" name="kursus" value="sql" style="margin-left: 165;"> SQL <br>
+                        <input type="checkbox" name="kursus" value="HTMLPHP" style="margin-left: 165;"> HTML dan PHP <br>
+
+                        Pilihan Hari/Jam Kursus
+                        <select name="jadwal" style="margin-left: 1;">
+                            <option value="seninrabu">Senin - Rabu/09.00-11.00</option>
+                            <option value="kamisabtu">Kamis - Sabtu/10.00-12.00</option>
+                        </select>
+                        <br><br><br><br><br>
+                </td>
+            </tr>
+                
+            <tr bgcolor="salmon">
+                <td colspan="2">
+                    Komentar Anda
+                    <br>
+                    <textarea align="left" name="Deskripsi" cols="60" rows="5">
+                    </textarea>
+                    <br>
+                    <font style="line-height: 2;">
+                        <input type="reset" value="Reset">
+                        <input type="submit" value="Submit">
+                        <input type="button" value="Cancel">
+                        <br><br>
+                    </font>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
