@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JPhotography</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #fff;
+        color: #333;
+        position: relative;
+      }
+
+      .corner-frame {
+        position: fixed; width: 40px; height: 40px; z-index: 9999;
+      }
+      .corner-frame::before, .corner-frame::after {
+        content: ""; position: absolute; background-color: #000000;
+      }
+      .corner-top-left { top: 0.3px; left: 0.3px; }
+      .corner-top-left::before { top: 0; left: 0; width: 150%; height: 10px; }
+      .corner-top-left::after { top: 0; left: 0; width: 10px; height: 150%; }
+      .corner-top-right { top: 0.3px; right: 0.3px; }
+      .corner-top-right::before { top: 0; right: 0; width: 150%; height: 10px; }
+      .corner-top-right::after { top: 0; right: 0; width: 10px; height: 150%; }
+      .corner-bottom-left { bottom: 0.3px; left: 0.3px; }
+      .corner-bottom-left::before { bottom: 0; left: 0; width: 150%; height: 10px; }
+      .corner-bottom-left::after { bottom: 0; left: 0; width: 10px; height: 150%; }
+      .corner-bottom-right { bottom: 0.3px; right: 0.3px; }
+      .corner-bottom-right::before { bottom: 0; right: 0; width: 150%; height: 10px; }
+      .corner-bottom-right::after { bottom: 0; right: 0; width: 10px; height: 150%; }
+
+      .navbar {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        background-color: #f8f9fa !important;
+        box-shadow: none;
+        border-bottom: 1px solid #eee;
+      }
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.8rem;
+        font-family: "Times New Roman", Times, serif;
+        color: #000 !important;
+      }
+      .nav-link {
+        font-family: "Times New Roman", Times, serif;
+        font-weight: 500;
+        font-size: 0.85rem;
+        color: #555 !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 0.5rem 1rem !important;
+        margin-left: 0.5rem;
+        border: 1px solid transparent;
+        border-radius: 5px;
+      }
+      .nav-link.active,
+      .nav-link:hover {
+        color: #000 !important;
+        background-color: #f0f0f0;
+        border-color: transparent;
+      }
+
+      .intro {
+        text-align: center;
+        padding: 3rem 0;
+        font-family: "Times New Roman", Times, serif;
+      }
+      .intro h1 {
+        font-weight: bold;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: #000;
+      }
+      .intro h2 {
+        font-weight: bold;
+        font-size: 1.3rem;
+        margin-bottom: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.75px;
+        color: #000;
+      }
+      .intro p {
+        font-family: "Arial", sans-serif;
+        font-size: 0.75rem;
+        font-weight: normal;
+        color: #888;
+        letter-spacing: 7px;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+      }
+
+      .filter-btns {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+      .filter-btns .btn {
+        border-radius: 20px;
+        font-weight: 500;
+        font-size: 0.8rem;
+        padding: 0.3rem 1rem;
+        margin: 0 0.2rem;
+        border: 1px solid #fff;
+        background-color: #fff;
+        color: #555555;
+        transition: all 0.3s ease;
+        font-family: "Times New Roman", Times, serif;
+      }
+      .filter-btns .btn.active,
+      .filter-btns .btn:hover {
+        background-color: #fff;
+        color: #000000;
+        border-color: #ccc;
+      }
+
+      .gallery {
+        max-width: 900px;
+        margin: 0 auto 3rem auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      .gallery img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 5px;
+        cursor: pointer;
+        object-fit: cover;
+        aspect-ratio: 1.5 / 2;
+      }
+
+      footer {
+        border-top: 1px solid #eee;
+        padding: 2rem 0;
+        text-align: center;
+        color: #555;
+      }
+      footer .footer-brand {
+        font-family: "Times New Roman", Times, serif;
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: #000;
+        margin-bottom: 0.25rem;
+      }
+      footer .copyright {
+        font-family: "Arial", sans-serif;
+        font-size: 0.8rem;
+        color: #777;
+        margin-bottom: 1rem;
+      }
+      footer .social-icons a {
+        color: #777;
+        margin: 0 0.6rem;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      footer .social-icons a:hover {
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="corner-frame corner-top-left"></div>
+    <div class="corner-frame corner-top-right"></div>
+    <div class="corner-frame corner-bottom-left"></div>
+    <div class="corner-frame corner-bottom-right"></div>
+
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="#">JPhotography</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About Me</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="intro">
+      <div class="container">
+        <h1>Hi. Hello.. I Am JohnDas...!</h1>
+        <h2>I Travel Around The World To Get The Best Photos.!</h2>
+        <p>Award Winning Photographer / Cinematographer / Writer</p>
+      </div>
+    </section>
+    <section class="filter-btns">
+      <div class="container">
+        <button class="btn active" type="button">All</button>
+        <button class="btn" type="button">Landscape</button>
+        <button class="btn" type="button">Portrait</button>
+        <button class="btn" type="button">Product</button>
+      </div>
+    </section>
+
+   <section class="gallery">
+      <img src="1.jpg" alt="Photo 1" />
+      <img src="2.jpg" alt="Photo 2" />
+      <img src="3.jpg" alt="Photo 3" />
+      <img src="4.jpg" alt="Photo 4" />
+      <img src="5.jpg" alt="Photo 5" />
+      <img src="6.jpg" alt="Photo 6" />
+      <img src="7.jpg" alt="Photo 7" />
+      <img src="8.jpg" alt="Photo 8" />
+      <img src="9.jpg" alt="Photo 9" />
+      <img src="10.jpg" alt="Photo 10" />
+      <img src="11.jpg" alt="Photo 11" />
+      <img src="12.jpg" alt="Photo 12" />
+      <img src="13.jpg" alt="Photo 13" />
+      <img src="14.jpg" alt="Photo 14" />
+      <img src="15.jpg" alt="Photo 15" />
+      <img src="16.jpg" alt="Photo 16" />
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-brand">JPhotography</div>
+        <div class="copyright">© Copyrights 2019. All Rights Reserved.</div>
+        <div class="social-icons">
+          <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+          <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="500px"><i class="fa-brands fa-500px"></i></a>
+          <a href="#" aria-label="Flickr"><i class="fa-brands fa-flickr"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
