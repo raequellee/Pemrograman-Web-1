@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema XXI KW</title>
+    <!-- Memanggil file CSS eksternal -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="header">
+        <h1>CINEMA XXI KW</h1>
+        <p>Pesan Tiket Film Favoritmu di Sini!</p>
+    </header>
+
+    <div id="main-container">
+        <!-- MENU -->
+        <nav id="menu">
+            <h3>Menu Navigasi</h3>
+            <ul>
+                <li><a href="#" id="nav-beranda" onclick="showPage('beranda', this)">Beranda (Film)</a></li>
+                <li><a href="#" id="nav-pesan" onclick="showPage('pesan', this)">Pesan Tiket</a></li>
+                <li><a href="#" id="nav-kritik" onclick="showPage('kritik', this)">Kritik & Saran</a></li>
+            </ul>
+        </nav>
+
+        <!-- BODY (KONTEN UTAMA) -->
+        <main id="body-content">
+            <!-- KONTEN HALAMAN BERANDA -->
+            <div id="beranda" class="page">
+                <h2>Sedang Tayang</h2>
+                <p>Berikut adalah film-film yang sedang tayang di bioskop kami.</p>
+
+                <table class="movie-table">
+                    <thead>
+                        <tr>
+                            <th>Poster Film</th>
+                            <th>Judul & Deskripsi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="film1.jpg" alt="Poster Film 1"></td>
+                            <td>
+                                <h3>JUMBO</h3>
+                                <p><strong>Genre:</strong> Animasi, Fantasi, Petualangan</p>
+                                <p><strong>Sinopsis:</strong> Don, anak laki-laki yang sering di-bully karena tubuhnya yang besar, bertemu dengan Meri, seorang peri kecil yang meminta bantuan untuk menemukan orang tuanya. Pertemuan ini mengawali petualangan yang mengubah pandangan Don terhadap dirinya sendiri.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img src="film2.jpg" alt="Poster Film 2"></td>
+                            <td>
+                                <h3>MOANA 2</h3>
+                                <p><strong>Genre:</strong> Animasi, Keluarga, Petualangan, Musikal</p>
+                                <p><strong>Sinopsis:</strong> Tiga tahun setelah petualangan pertama, Moana mendapat panggilan dari nenek moyangnya untuk mencari pulau Motufetu yang hilang. Bersama Maui dan kru baru, ia menjelajahi perairan berbahaya di Oceania untuk menyatukan kembali suku-suku yang terpisah. Perjalanan ini menguji kemampuannya sebagai pemimpin sejati bagi rakyatnya.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img src="film3.jpg" alt="Poster Film 3"></td>
+                            <td>
+                                <h3>ELEMENTAL</h3>
+                                <p><strong>Genre:</strong> Animasi, Keluarga, Komedi, Romantis</p>
+                                <p><strong>Sinopsis:</strong> Berlatar di Element City, tempat tinggal penduduk yang terbuat dari api, air, tanah, dan udara, film ini mengikuti Ember (api) dan Wade (air) yang seharusnya tidak bisa bersatu. Ketika keduanya bertemu, mereka menemukan bahwa meskipun berbeda elemen, mereka memiliki kesamaan yang mengejutkan. Cerita mengeksplorasi tema perbedaan, penerimaan, dan menemukan tempat di dunia.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- KONTEN HALAMAN PESAN TIKET -->
+            <div id="pesan" class="page">
+                <h2>Form Pemesanan Tiket</h2>
+                <form name="formPesan" onsubmit="return validasiPesan()" class="styled-form">
+                    <label for="film">Pilih Film:</label>
+                    <select id="film" name="film" required>
+                        <option value="">-- Pilih Film --</option>
+                        <option value="JUMBO">JUMBO</option>
+                        <option value="MOANA 2">MOANA 2</option>
+                        <option value="ELEMENTAL">ELEMENTAL</option>
+                    </select>
+                    <label for="nama">Nama Lengkap:</label>
+                    <input type="text" id="nama" name="nama" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="jumlah">Jumlah Tiket:</label>
+                    <input type="number" id="jumlah" name="jumlah" min="1" max="10" required oninput="hitungTotal()">
+                    <input type="hidden" id="hargaSatuan" value="50000">
+                    <div class="total-harga">
+                        Total Bayar: <span id="totalBayar">Rp 0</span>
+                    </div>
+                    <button type="submit">Kirim Pesanan</button>
+                    <button type="reset" onclick="hitungTotal()">Reset Form</button>
+                </form>
+            </div>
+
+            <!-- KONTEN HALAMAN KRITIK & SARAN -->
+            <div id="kritik" class="page">
+                <h2>Form Kritik & Saran</h2>
+                <p>Kami sangat menghargai masukan Anda untuk meningkatkan kualitas layanan kami.</p>
+                <form name="formKritik" onsubmit="return validasiKritik()" class="styled-form">
+                    <label for="namaKritik">Nama Anda:</label>
+                    <input type="text" id="namaKritik" name="namaKritik" required>
+                    <label for="emailKritik">Email Anda:</label>
+                    <input type="email" id="emailKritik" name="emailKritik" required>
+                    <label for="pesan">Pesan Anda:</label>
+                    <textarea id="pesanKritik" name="pesanKritik" rows="6" required></textarea>
+                    <button type="submit">Kirim Masukan</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Memanggil file JavaScript eksternal di akhir body -->
+    <script src="script.js"></script>
+</body>
+</html>
